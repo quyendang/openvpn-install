@@ -25,7 +25,7 @@ See also: [WireGuard](https://github.com/hwdsl2/wireguard-install) and [IPsec VP
 First, download the script on your Linux server\*:
 
 ```bash
-wget -O openvpn.sh https://get.vpnsetup.net/ovpn
+wget -O openvpn.sh https://raw.githubusercontent.com/quyendang/openvpn-install/master/openvpn-install.sh
 ```
 
 **Option 1:** Auto install OpenVPN using default options.
