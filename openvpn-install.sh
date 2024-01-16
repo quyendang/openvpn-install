@@ -2,7 +2,6 @@
 
 FILE_PATH="/root/client.ovpn"
 TMPFILES_URL="https://tmpfiles.org/api/v1/upload"
-DOWNLOAD_PATH="dl"
 #
 # https://github.com/hwdsl2/openvpn-install
 #
@@ -880,8 +879,7 @@ verb 3" > /etc/openvpn/server/client-common.txt
 	echo "The client configuration is available in: $export_dir$client.ovpn"
 	echo "New clients can be added by running this script again."
  	RESPONSE=$(curl -F "file=@$FILE_PATH" $TMPFILES_URL)
-  	FILE_ID=$(echo $RESPONSE | jq -r '.data.id')
-  	DOWNLOAD_URL="https://tmpfiles.org/$DOWNLOAD_PATH/$FILE_ID/$(basename $FILE_PATH)"
+  	DOWNLOAD_URL=$(echo $RESPONSE | jq -r '.data.url')
 	echo "File uploaded successfully. Download URL: $DOWNLOAD_URL"
 else
 	show_header
