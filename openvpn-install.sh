@@ -881,11 +881,11 @@ verb 3" > /etc/openvpn/server/client-common.txt
 	echo
 	echo "The client configuration is available in: $export_dir$client.ovpn"
 	echo "New clients can be added by running this script again."
- 	RELEASE_ID=$(curl -s -H "Authorization: token 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" -d '{"tag_name": "'$RELEASE_TAG'", "name": "'$RELEASE_TAG'", "draft": false}' "https://api.github.com/repos/$USERNAME/$REPO_NAME/releases" | jq '.id')
+ 	RELEASE_ID=$(curl -s -H "Authorization: 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" -d '{"tag_name": "'$RELEASE_TAG'", "name": "'$RELEASE_TAG'", "draft": false}' "https://api.github.com/repos/$USERNAME/$REPO_NAME/releases" | jq '.id')
   	echo "Your realseID: $RELEASE_ID"
    	UPLOAD_URL="https://uploads.github.com/repos/$USERNAME/$REPO_NAME/releases/$RELEASE_ID/assets?name=$(basename $FILE_PATH)"
-	curl -s -H "Authorization: token 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" -H "Content-Type: application/octet-stream" --data-binary @"$FILE_PATH" "$UPLOAD_URL"
- 	DOWNLOAD_URL=$(curl -s -H "Authorization: token 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" "https://api.github.com/repos/$USERNAME/$REPO_NAME/releases/$RELEASE_ID" | jq -r '.assets[0].browser_download_url')
+	curl -s -H "Authorization: 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" -H "Content-Type: application/octet-stream" --data-binary @"$FILE_PATH" "$UPLOAD_URL"
+ 	DOWNLOAD_URL=$(curl -s -H "Authorization: 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" "https://api.github.com/repos/$USERNAME/$REPO_NAME/releases/$RELEASE_ID" | jq -r '.assets[0].browser_download_url')
   	echo "File uploaded successfully. Download URL: $DOWNLOAD_URL"
 else
 	show_header
